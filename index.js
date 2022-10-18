@@ -7,7 +7,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 
 //importing router
-const routes =require("./routes/routes")
+const routes = require("./routes/routes")
 
 
 
@@ -20,8 +20,12 @@ app.listen(3000, () => {
     console.log("Server runnig on port 3000")
 })
 
+app.use(express.json())
+
 //default route ("/") with response of a string
-app.use("/", (req,res) => {res.send("Welcome to the node application here")})
+app.use("/welcome", (req,res) => {res.send("Welcome to the node application here")})
+
+app.use("/user", routes)
 
 //connecting database with mongoose library (mongoose.connect())
 const uri="mongodb+srv://shashank:12345@cluster0.dmji71d.mongodb.net/employeeNodejs?retryWrites=true&w=majority"
